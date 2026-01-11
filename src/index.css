@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+/* Retro western/poster font */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+/* Typewriter/Retro */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /* Defaults/Variables - LOCKED TO VINTAGE SHAADI */
+  :root {
+    /* Vintage Palette */
+    --col-primary: #b45309;
+    /* Mustard/Rust */
+    --col-primary-hover: #92400e;
+    --col-secondary: #0d9488;
+    /* Teal */
+    --col-text: #451a03;
+    /* Sepia Dark */
+    --col-text-muted: #78350f;
+
+    /* Backgrounds */
+    --bg-page: #fef3c7;
+    --bg-card: #fffbed;
+    /* Off-white paper */
+    --bg-card-border: #78350f;
+    /* Thick dark border */
+    /* Background */
+    --bg-page: #f9f9f9;
+    --bg-card: #ffffff;
+
+    /* Theme-specifics */
+    --border-radius: 12px;
+    --font-heading: 'Rye', serif;
+    --font-body: 'Courier Prime', monospace;
+  }
+
+  body {
+    @apply antialiased min-h-[100dvh];
+    background-color: var(--bg-page);
+    color: var(--col-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    /* Removed image background, kept simple grain if desired */
+  }
+
+  /* Simple Film Grain Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    z-index: 50;
+    opacity: 0.5;
+  }
+}
+
+@layer components {
+
+  /* Themed Card */
+  .theme-card {
+    background-color: var(--bg-card);
+    border: 2px solid var(--bg-card-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-type);
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Primary Action Button */
+  .btn-theme-primary {
+    background-color: var(--col-primary);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-heading);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-type);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-theme-primary:hover {
+    background-color: var(--col-primary-hover);
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0px 0px rgba(69, 26, 3, 1);
+  }
+
+  /* Secondary Button */
+  .btn-theme-secondary {
+    background-color: white;
+    color: var(--col-text);
+    border: 2px solid var(--col-text-muted);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-heading);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .btn-theme-secondary:hover {
+    background-color: #fff7ed;
+    box-shadow: 2px 2px 0px 0px rgba(69, 26, 3, 0.5);
+  }
+
+  /* Typography Utilities */
+  .text-theme-heading {
+    font-family: var(--font-heading);
+    color: var(--col-text);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .text-theme-body {
+    font-family: var(--font-body);
+    color: var(--col-text-muted);
+  }
+}
+
+/* Scrollbar Hide */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
